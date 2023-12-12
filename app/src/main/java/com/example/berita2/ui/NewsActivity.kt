@@ -11,9 +11,9 @@ import com.example.berita2.databinding.ActivityNewsBinding
 import com.example.berita2.db.ArticleDatabase
 import com.example.berita2.repository.NewsRepository
 
-class NewsActivity(val newsViewModel: NewsViewModel) : AppCompatActivity() {
+class NewsActivity : AppCompatActivity() {
 
-    lateinit var newsviewModel: NewsViewModel
+    lateinit var newsViewModel: NewsViewModel
     lateinit var binding: ActivityNewsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +25,7 @@ class NewsActivity(val newsViewModel: NewsViewModel) : AppCompatActivity() {
 
         val newsRepository = NewsRepository(ArticleDatabase(this))
         val viewModelProviderFactory = NewsViewModelProviderFactory(application, newsRepository)
-        newsviewModel = ViewModelProvider(this, viewModelProviderFactory).get(NewsViewModel::class.java)
+        newsViewModel = ViewModelProvider(this, viewModelProviderFactory).get(NewsViewModel::class.java)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.newsNavHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
